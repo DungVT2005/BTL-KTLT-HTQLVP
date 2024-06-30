@@ -31,6 +31,8 @@ void xuatDanhsachbenhnhan(BN ds[],int n);
 void timkiem(BN ds[],int n, int ma);
 void themmothoadon(BN ds[],int n);
 void tinhtongdon(BN ds[],int n);
+void capnhat(BN ds[], int n, int ma);
+void xoahoadon(BN ds[],int n, int ma);
 int main(){
    int chon =0;
    struct benhnhan ds[1000];
@@ -61,14 +63,14 @@ int main(){
         {
             int ma;
             printf ("Nhap vao ma benh nhan can cap nhat: "); scanf ("%d", &ma);  
-            //capnhat(ds,n,ma); 
+            capnhat(ds,n,ma); 
             break;
         }
     case 4:
         {   
             int ma;
             printf ("Nhap vao ma benh nhan can xoa: "); scanf ("%d", &ma);
-            //xoahoadon(ds,n,ma);
+            xoahoadon(ds,n,ma);
             n=n-1;
             break;
         }
@@ -76,19 +78,19 @@ int main(){
         {
             int ma;
             printf ("Nhap vao ma benh nhan can tim: "); scanf ("%d", &ma);
-            //timkiem(ds,n,ma);
+            timkiem(ds,n,ma);
             break;
         }
     case 6:
         {
-            //themmothoadon(ds,n);
+            themmothoadon(ds,n);
             n=n+1;
             break;
         }
     case 7:
         {
             xuatDanhsachbenhnhan(ds,n);
-            //tinhtongdon(ds,n);
+            tinhtongdon(ds,n);
             break;
         }
     case 8:
@@ -214,4 +216,27 @@ void tinhtongdon(BN ds[],int n){
         tong=tong+ds[i].vienphi;
     }
     printf("\nTong hoa don vien phi: %d", tong);
+}
+void capnhat(BN ds[], int n, int ma){
+    system("cls");
+    for(int i=0; i<n; i++){
+        if(ds[i].maso == ma){
+            nhapBenhnhan(ds[i]);
+            tinhsongaynamvien(&ds[i]);
+            tongvienphi(&ds[i]);
+            inDon(ds[i]);
+            break;
+        }
+    }
+}
+void xoahoadon(BN ds[],int n, int ma){
+    system("cls");
+    for(int i=0; i<n; i++){
+        if(ds[i].maso == ma){
+            for(int j=i; j<n-1; j++){
+                ds[j] = ds[j+1];
+            }
+            break;
+        }
+    }
 }
